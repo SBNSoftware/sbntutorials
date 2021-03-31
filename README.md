@@ -24,6 +24,10 @@ We will be using the following python packages:
 
 [**matplotlib**](https://github.com/matplotlib/matplotlib) For making plots.
 
+<img src="https://jupyter.org/assets/main-logo.svg" alt="jupyter" width="100">
+
+[**jupyter notebook**](https://github.com/jupyter/notebook) For running code.
+
 
 ## How to Install
 
@@ -43,9 +47,6 @@ virtualenv env
 source env/bin/activate
 # Install the python dependencies
 pip install -r requirements.txt
-
-
-
 ```
 
 
