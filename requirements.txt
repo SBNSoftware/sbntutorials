@@ -1,0 +1,6 @@
+uproot
+numpy
+scipy
+matplotlib
+pandas
+jupyterlab
