@@ -53,7 +53,7 @@ pip install -r requirements.txt
 
 In a terminal with the activated virtual environment, run:
 
-```jupyter notebook```
+```jupyter notebook --no-browser```
 
 And open the link that is printed in a web browser. If you are running jupyter notebook on a FNAL machine, you will need to 
 forward it to your local machine. To do this, ssh into the FNAL server with the flag:
@@ -61,3 +61,5 @@ forward it to your local machine. To do this, ssh into the FNAL server with the 
 ```-L <port>:localhost:<port>```
 
 Where ```<port>``` is the port that jupyter notebook opens with. By default, it is 8888.
+
+Then, open **Demo.ipynb** on the file browser.
