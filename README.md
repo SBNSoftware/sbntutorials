@@ -29,6 +29,25 @@ We will be using the following python packages:
 
 To install the python packages you will need **python 3**, **pip**, and **virtualenv**. I have scripts in this repository for getting this setup on the FNAL servers. If you are installing on your own machine, and are not sure if you have the required stuff, see: https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/.
 
+Then, run:
+
+```
+# ON FNAL: run the proper setup script: setup_sbnd.sh or setup_icarus.sh
+# clone this repository:
+git clone https://github.com/gputnam/SBN-Workshop-0421.git
+# make a virtualenv
+virtualenv env
+# NOTE: on the FNAL servers the default virtualenv is broken. Instead, I have one on pnfs persistent. So run:
+/pnfs/sbn/persistent/users/gputnam/virtualenv-15.1.0/virtualenv.py env
+# Active the virtualenv
+source env/bin/activate
+# Install the python dependencies
+pip install -r requirements.txt
+
+
+
+```
+
 
 
 
