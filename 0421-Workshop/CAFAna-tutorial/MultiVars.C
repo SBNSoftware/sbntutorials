@@ -22,6 +22,7 @@ const Var kLongestTrkLen([](const caf::SRSliceProxy* slc) -> double {
   return len;
 });
 
+// A MultiVar returns many numbers per slice, a.k.a. variables to plot
 const MultiVar kAllTrkLen([](const caf::SRSliceProxy* slc) -> std::vector<double> {
   std::vector<double> len;
   for (auto const& trk : slc->reco.trk) {
@@ -41,7 +42,7 @@ void MultiVars(const std::string inputName = "/pnfs/sbnd/persistent/sbndpro/mcp/
   // A spectrum is a histogram with associated POT information
   const Binning binsLen = Binning::Simple(40, 0, 200);
 
-  // Spectrum(Spectrumloader, HistAxis, Cut)
+  // Spectrum(SpectrumName, Binning, SpectrumLoader, MultiVar, SpillCut, Cut)
   Spectrum sAllTrkLen("sAllTrkLen", binsLen, loader, kAllTrkLen, kNoSpillCut, kNoCut);
   Spectrum sLongestTrkLen("sLongestTrkLen", binsLen, loader, kLongestTrkLen, kNoSpillCut, kNoCut);
 

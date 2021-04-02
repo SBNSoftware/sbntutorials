@@ -12,22 +12,23 @@ using namespace ana;
 #include "TLegend.h"
 
 // ---- VARS -----
-// A Var returns a number per slice, a.k.a. variables to plot
+// A SpillVar returns a number per event, a.k.a. variables to plot
 const SpillVar kNSlc([](const caf::SRSpillProxy* spill) -> int {
   return spill->nslc;
 });
 
 // ---- CUTS -----
 // A Cut returns a boolean per slice
-const SpillCut kSlcCut10([](const caf::SRSpillProxy* spill) {
-  return spill->nslc >= 10;
-});
-
-// We can also create SpillCuts from applying regular Cuts to the slices in  aspill
 const Cut kNuSlc([](const caf::SRSliceProxy* slc) {
   return slc->is_clear_cosmic == 0;
 });
 
+// A SpillCut returns a boolean per event (spill)
+const SpillCut kSlcCut10([](const caf::SRSpillProxy* spill) {
+  return spill->nslc >= 10;
+});
+
+// We can also create SpillCuts from applying regular Cuts to the slices in a spill
 const SpillCut kNuSlcCut3([](const caf::SRSpillProxy* spill) {
   unsigned int counter(0);
   for (const caf::SRSliceProxy& slc : spill->slc) {

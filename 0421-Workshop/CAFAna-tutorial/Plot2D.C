@@ -39,6 +39,8 @@ void Plot2D(const std::string inputName = "/pnfs/sbnd/persistent/sbndpro/mcp/mc/
   //Spectrum(Spectrumloader,HistAxis,Cut)
   Spectrum sNTrk(loader, axNTrk, kNoCut);
   Spectrum sNShw(loader, axNShw, kNoCut);
+
+  //Spectrum(Spectrumloader ,HistAxisX HistAxisY, SpillCut, Cut)
   Spectrum sNTrkShw(loader, axNTrk, axNShw, kNoSpillCut, kNoCut);
 
   // This is the call that actually fills in the spectrum
@@ -60,6 +62,7 @@ void Plot2D(const std::string inputName = "/pnfs/sbnd/persistent/sbndpro/mcp/mc/
   leg->Draw();
   c1->Print("NTrkShw.png");
 
+  // Create a 2D plot
   TCanvas* c2 = new TCanvas("c2", "c2");
   TH2* hNTrkShw = sNTrkShw.ToTH2(6.6e20);
   hNTrkShw->Draw("colz");
