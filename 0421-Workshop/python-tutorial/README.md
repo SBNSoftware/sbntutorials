@@ -36,13 +36,12 @@ To install the python packages you will need **python 3**, **pip**, and **virtua
 Then, run:
 
 ```
-# ON FNAL: run the proper setup script: setup_sbnd.sh or setup_icarus.sh
+# ON FNAL
+source setuo_<detector>.sh # Where <detector> is sbnd or icarus. If not on an FNAL server -- don't worry about this!
 # clone this repository:
 git clone https://github.com/gputnam/SBN-Workshop-0421.git
 # make a virtualenv
-virtualenv env
-# NOTE: on the FNAL servers the default virtualenv is broken. Instead, I have one on pnfs persistent. So run:
-/pnfs/sbn/persistent/users/gputnam/virtualenv-15.1.0/virtualenv.py env
+python -m venv env
 # Active the virtualenv
 source env/bin/activate
 # Install the python dependencies
