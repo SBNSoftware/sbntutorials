@@ -36,10 +36,12 @@ To install the python packages you will need **python 3**, **pip**, and **virtua
 Then, run:
 
 ```
-# ON FNAL
-source setuo_<detector>.sh # Where <detector> is sbnd or icarus. If not on an FNAL server -- don't worry about this!
 # clone this repository:
 git clone https://github.com/gputnam/SBN-Workshop-0421.git
+# enter the correct directory
+cd sbntutorials/0421-Workshop-python-tutorial
+# ON FNAL
+source setup_<detector>.sh # Where <detector> is sbnd or icarus. If not on an FNAL server -- don't worry about this!
 # make a virtualenv
 python -m venv env
 # Active the virtualenv
