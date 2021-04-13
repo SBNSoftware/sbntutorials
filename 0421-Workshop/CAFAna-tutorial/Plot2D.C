@@ -14,12 +14,19 @@ using namespace ana;
 
 // ---- VARS -----
 // A Var returns a number per slice, a.k.a. variables to plot
-const Var kNTrk([](const caf::SRSliceProxy* slc) -> double {
-  return slc->reco.ntrk;
-});
-const Var kNShw([](const caf::SRSliceProxy* slc) -> double {
-  return slc->reco.nshw;
-});
+const Var kNTrk = SIMPLEVAR(reco.ntrk);
+const Var kNShw = SIMPLEVAR(reco.nshw);
+
+// Define some cuts based on the Vars
+const Cut kNTrkCut = kNTrk > 2;
+const Cut kNShwCut = kNShw > 2;
+
+// We can then combine the cuts together
+// This can be used to combine many cuts together
+const Cut kNTrkShwCut = kNTrkCut && kNShwCut;
+
+// Alternatively we could use or logic
+// const Cut = kNTrkCut || kNShwCut;
 
 void Plot2D(const std::string inputName = "/pnfs/sbnd/persistent/sbndpro/mcp/mc/workshop/SBNWorkshop0421/prodoverlay_corsika_cosmics_proton_genie_nu_spill_gsimple-configf-v1_tpc/v09_19_00_01/caf/flat_caf_0-9f00feff-e742-419d-9856-9fe7428b93a9.root")
 {
@@ -42,6 +49,7 @@ void Plot2D(const std::string inputName = "/pnfs/sbnd/persistent/sbndpro/mcp/mc/
 
   //Spectrum(Spectrumloader ,HistAxisX HistAxisY, SpillCut, Cut)
   Spectrum sNTrkShw(loader, axNTrk, axNShw, kNoSpillCut, kNoCut);
+  Spectrum sNTrkShwCut(loader, axNTrk, axNShw, kNoSpillCut, kNTrkShwCut);
 
   // This is the call that actually fills in the spectrum
   loader.Go();
@@ -67,4 +75,10 @@ void Plot2D(const std::string inputName = "/pnfs/sbnd/persistent/sbndpro/mcp/mc/
   TH2* hNTrkShw = sNTrkShw.ToTH2(6.6e20);
   hNTrkShw->Draw("colz");
   c2->Print("NtrkShw2D.png");
+
+  // Create a 2D plot with a Cut
+  TCanvas* c3 = new TCanvas("c3", "c3");
+  TH2* hNTrkShwCut = sNTrkShwCut.ToTH2(6.6e20);
+  hNTrkShwCut->Draw("colz");
+  c3->Print("NtrkShw2DCut.png");
 }

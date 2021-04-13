@@ -13,9 +13,13 @@ using namespace ana;
 
 // ---- VARS -----
 // A SpillVar returns a number per event, a.k.a. variables to plot
-const SpillVar kNSlc([](const caf::SRSpillProxy* spill) -> int {
-  return spill->nslc;
-});
+const SpillVar kNSlc = SIMPLESPILLVAR(nslc);
+
+// This is shorthand for the following:
+
+// const SpillVar kNSlc([](const caf::SRSpillProxy* spill) -> int {
+//   return spill->nslc;
+// });
 
 // ---- CUTS -----
 // A Cut returns a boolean per slice

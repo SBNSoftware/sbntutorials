@@ -13,9 +13,13 @@ using namespace ana;
 
 // ---- VARS -----
 // A Var returns a number per slice, a.k.a. variables to plot
-const Var kNTrk([](const caf::SRSliceProxy* slc) -> int {
-  return slc->reco.ntrk;
-});
+const Var kNTrk = SIMPLEVAR(reco.ntrk);
+
+// This is shorthand for the following:
+
+// const Var kNTrk([](const caf::SRSliceProxy* slc) -> int {
+//   return slc->reco.ntrk;
+// });
 
 const Var kLongestTrkLen([](const caf::SRSliceProxy* slc) -> float {
   float len(-5.f);
@@ -33,9 +37,13 @@ const Cut kNTrkCut([](const caf::SRSliceProxy* slc) {
 });
 
 // Can also Cut on Vars
-const Cut kTrkLenCut([](const caf::SRSliceProxy* slc) {
-  return kLongestTrkLen(slc) > 50.f;
-});
+const Cut kTrkLenCut = kLongestTrkLen > 50.f;
+
+// This is shorthand for the following:
+
+// const Cut kTrkLenCut([](const caf::SRSliceProxy* slc) {
+//   return kLongestTrkLen(slc) > 50.f;
+// });
 
 void Intro(const std::string inputName = "/pnfs/sbnd/persistent/sbndpro/mcp/mc/workshop/SBNWorkshop0421/prodoverlay_corsika_cosmics_proton_genie_nu_spill_gsimple-configf-v1_tpc/v09_19_00_01/caf/flat_caf_0-9f00feff-e742-419d-9856-9fe7428b93a9.root")
 {
