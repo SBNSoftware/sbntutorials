@@ -37,7 +37,7 @@ Then, run:
 
 ```
 # clone this repository:
-git clone https://github.com/gputnam/SBN-Workshop-0421.git
+git clone https://github.com/SBNSoftware/sbntutorials.git
 # enter the correct directory
 cd sbntutorials/0421-Workshop/python-tutorial
 # ON FNAL
