@@ -1,0 +1,11 @@
+uproot
+numpy
+scipy
+matplotlib
+pandas
+jupyterlab
+# For opening compressed ROOT files
+lz4
+xxhash
+# For removing output from jupyter notebooks
+nbstripout
