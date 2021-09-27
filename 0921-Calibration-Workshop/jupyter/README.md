@@ -63,4 +63,4 @@ forward it to your local machine. To do this, **ssh** into the FNAL server with 
 
 Where ```<port>``` is the port that jupyter notebook opens with. By default, it is 8888.
 
-Then, open **Demo.ipynb** on the file browser.
+Then, open **DemoICARUS.ipynb** on the file browser.
