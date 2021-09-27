@@ -28,7 +28,7 @@ def _makedf(dfs):
 
     return dfs
 
-def loaddf(fname, branches):
+def loaddf_icarus(fname, branches):
     with uproot.open(fname) as f:
         try:
             dfW = f[folderW][tname].arrays(branches, library="pd")
