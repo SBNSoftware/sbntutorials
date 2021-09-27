@@ -13,10 +13,11 @@ void dqdx_rr() {
       return;
    }
 
-   // Create a TTreeReader for the tree, for instance by passing the
-   // TTree's name and the TDirectory / TFile it is in.
+   // NOTE: Only for ICARUS MC!
    //
    // Process data from tracks in the east cryostat
+   //
+   // If running on SBND, change caloskimE -> caloskim (only one cryostat)
    TTreeReader myReader("caloskimE/TrackCaloSkim", myFile);
 
    // Variables we are going to read
