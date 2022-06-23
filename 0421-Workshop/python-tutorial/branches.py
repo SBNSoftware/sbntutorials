@@ -18,21 +18,21 @@ trueparticlenames = [
     "G4ID",
     "cont_tpc",
     "genE",
-    "plane2VisE",
+    "plane.1.2.visE",
 ]
 
 
 trkbranches = [
-    "rec.slc.reco.trk.parent_is_primary",
-    "rec.slc.reco.trk.slcID",
-    "rec.slc.reco.trk.parent",
+    "rec.slc.reco.trk.pfp.parent_is_primary",
+    "rec.slc.reco.trk.pfp.slcID",
+    "rec.slc.reco.trk.pfp.parent",
     "rec.slc.reco.trk.ID",
     "rec.slc.reco.trk.producer",
     "rec.slc.reco.trk.start.x", "rec.slc.reco.trk.start.y", "rec.slc.reco.trk.start.z",
     "rec.slc.reco.trk.end.x", "rec.slc.reco.trk.end.y", "rec.slc.reco.trk.end.z",
     "rec.slc.reco.trk.dir.x", "rec.slc.reco.trk.dir.y", "rec.slc.reco.trk.dir.z",
-    "rec.slc.reco.trk.chi2pid2.chi2_muon",
-    "rec.slc.reco.trk.chi2pid2.chi2_proton",
+    "rec.slc.reco.trk.chi2pid.2.chi2_muon",
+    "rec.slc.reco.trk.chi2pid.2.chi2_proton",
     "rec.slc.reco.trk.len",
     "rec.slc.reco.trk.rangeP.p_muon",
     "rec.slc.reco.trk.mcsP.fwdP_muon",
