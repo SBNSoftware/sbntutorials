@@ -1,4 +1,5 @@
-#include "sbnana/CAFAna/StandardRecord/Proxy/SRProxy.h"
+#include "sbnanaobj/StandardRecord/Proxy/SRProxy.h"
+
 #include "sbnana/CAFAna/Core/Var.h"
 #include "sbnana/CAFAna/Core/Cut.h"
 
