@@ -5,13 +5,10 @@
 
 void dqdx_rr() {
    // Create a histogram for the values we read.
-   TH2F *myHist = new TH2F("dqdx_rr","dqdx vs residual range: West Cryostat", 50, 0., 150., 100, 400., 2000.);
-   myHist->GetXaxis()->SetTitle("residual range in cm");
-   myHist->GetYaxis()->SetTitle("dqdx in ADC/cm");
+   TH2F *myHist = new TH2F("dqdx_rr","dqdx_rr", 50, 0., 150., 100, 400., 2000.);
 
-   gStyle->SetOptStat(0);
    // Open the file containing the tree.
-   TFile *myFile = TFile::Open("/icarus/data/users/obitter/CalibrationWS21/Supplemental-gen_20210909T075432-G4_20210909T081124-DetSim_20210909T095200-MCstage0_20210909T104941-MCstage1.root");
+   TFile *myFile = TFile::Open("/pnfs/icarus/persistent/users/gputnam/calib/MCP2021G/ntuples/Supplemental-gen_20210909T075432-G4_20210909T081124-DetSim_20210909T095200-MCstage0_20210909T104941-MCstage1.root");
    if (!myFile || myFile->IsZombie()) {
       return;
    }
