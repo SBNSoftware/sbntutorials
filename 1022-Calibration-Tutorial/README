@@ -1,0 +1,8 @@
+# To setup:
+source setup.sh
+root -l
+
+# In the interpreter, run:
+> gInterpreter->AddIncludePath("$LIBWDA_INC")
+> .L dedx_rr.C
+> dedx_rr()
