@@ -165,14 +165,13 @@ void dedx_rr() {
    myHist->GetYaxis()->SetTitle("dE/dx [MeV/cm]");
 
    gStyle->SetOptStat(0);
-   // Open the file containing the tree.
-   TFile *myFile = TFile::Open("/pnfs/icarus/persistent/calibration/calib_ntuples/data/v09_37_02_09/offbeambnbmajority/run/85/05/hist_data_dl9_fstrmOffBeamBNBMAJORITY_run8505_45_20220619T070132_20220701T100443-stage0_20220703T111223_stage1-6e16ea52-b7f1-4ebf-9f26-3cea1659061f.root");
-   if (!myFile || myFile->IsZombie()) {
-      return;
-   }
+   // Open up files from a run
+   TChain c;
+   c.Add("/pnfs/icarus/persistent/calibration/calib_ntuples/data/v09_37_02_09/offbeambnbmajority/run/85/40/*.root/caloskimE/TrackCaloSkim");
 
    // Process data from tracks in the east cryostat
-   TTreeReader myReader("caloskimE/TrackCaloSkim", myFile);
+   // TTreeReader myReader("caloskimE/TrackCaloSkim", &c);
+   TTreeReader myReader(&c);
    int cryo = 0; // EAST
 
    // Variables we are going to read
@@ -191,12 +190,13 @@ void dedx_rr() {
 
    // Loop over all entries of the TTree
    while (myReader.Next()) {
-      // querrying the database is slow -- might want to only want to do this once
-      TPCData thisLifetimes = GetLifetimes(*run);
-      TPCData thisGains = GetGains(*run);
-      YZScales thisScales = GetYZScales(*run);
-
       if (*selected == 0) { // Tracks selected as stopping
+
+          // querrying the database is slow -- might want to only want to do this once per-run
+          TPCData thisLifetimes = GetLifetimes(*run);
+          TPCData thisGains = GetGains(*run);
+          YZScales thisScales = GetYZScales(*run);
+
           for (unsigned i = 0; i < dqdxs.GetSize(); i++) {
               if (!ontraj[i]) continue;
 
@@ -204,14 +204,19 @@ void dedx_rr() {
               double rr = rrs[i];
               double y = ys[i];
               double z = zs[i];
-              int itpc = cryo*2 + tpcs[i]/2;
+              int tpc = tpcs[i]/2; // convert from "logical" tpc
+              int itpc = cryo*2 + tpc;
               double thit = (ts[i] * TICK_PERIOD - *t0 - TANODE*TICK_PERIOD) / 1000.;
 
-              double tau = thisLifetimes.atTPC(cryo, tpcs[i]);
+              double tau = thisLifetimes.atTPC(cryo, tpc);
 
               double t_corr = exp(thit/tau);
               double yz_corr = thisScales.Scale(y, z, itpc);
-              double gain = thisGains.atTPC(cryo, tpcs[i]);
+              double gain = thisGains.atTPC(cryo, tpc);
+
+              // ignore bad y-z
+              if (yz_corr < 0.) continue;
+
               double dqdx_nelec = (dqdx*t_corr / yz_corr) * gain;
 
               double dedx = derecombine(dqdx_nelec);
