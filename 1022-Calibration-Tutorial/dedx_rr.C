@@ -177,6 +177,8 @@ void dedx_rr() {
 
    // Variables we are going to read
    TTreeReaderValue<int> selected(myReader, "trk.selected");
+   TTreeReaderValue<int> run(myReader, "trk.meta.run");
+   TTreeReaderValue<float> t0(myReader, "trk.t0");
    
    TTreeReaderArray<float> dqdxs(myReader, "trk.hits2.dqdx"); // hits on plane 2 (Collection)
    TTreeReaderArray<float> rrs(myReader, "trk.hits2.rr"); // hits on plane 2 (Collection)
