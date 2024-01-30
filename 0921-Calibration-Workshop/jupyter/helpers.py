@@ -3,6 +3,7 @@ import pandas as pd
 
 folderE = "caloskimE"
 folderW = "caloskimW"
+folder = "caloskim"
 tname = "TrackCaloSkim"
 
 def _makedf(dfs):
@@ -47,4 +48,17 @@ def loaddf_icarus(fname, branches):
     if len(dfW) == 1:
         return dfW[0]
     
+    return dfW
+
+def loaddf_sbnd(fname, branches):
+    with uproot.open(fname) as f:
+        try:
+            df = f[folder][tname].arrays(branches, library="pd")
+        except Exception as e:
+            print("Could not open file (%s) due to exception." % fname)
+            print(e)
+            return None
+
+        df = _makedf(df)
+        
     return dfW
