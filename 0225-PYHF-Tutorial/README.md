@@ -1,18 +1,22 @@
 This instruction is for running a jupyter-notebook on a gpvm. 
 The same instruction applied for running on a local machine, however, no forwarding port is needed.
 
-# 1. Setup PYTHON Environment
+## 1. Setup PYTHON Environment
 https://sbnsoftware.github.io/SBNYoung/Python.html
 
-# 2. Install the necessary package in your environment
+## 2. Install the necessary package in your environment
+
 `which python`
+
 `pip install --upgrade pip`
+
 `pip install wheel setuptools`
+
 `pip install -r requirements.txt`
 
-# 3. Launch the jupyter-notebook from gpvm
+## 3. Launch the jupyter-notebook from gpvm
 
-## On sbndgpvm 
+### On sbndgpvm 
 `jupyter-notebook --no-browser`
 
 Make note of the port in the launch message, for example, it is 8888
@@ -26,6 +30,7 @@ Make note of the port in the launch message, for example, it is 8888
 
 ```
 
-## From the local machine
+### From the local machine
+
 - `ssh sbndgpvm<00> -L <port>:localhost:<host>`
 - Open the url on any web browsers
